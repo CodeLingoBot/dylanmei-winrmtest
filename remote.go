@@ -67,13 +67,13 @@ func (r *Remote) CommandFunc(m MatcherFunc, f CommandFunc) {
 }
 
 func splitAddr(addr string) (host string, port int, err error) {
-	u, err := url.Parse(addr)
-	if err != nil {
+	u, innererr := url.Parse(addr)
+	if innererr != nil {
 		return
 	}
 
 	split := strings.Split(u.Host, ":")
-	host = split[0]
-	port, err = strconv.Atoi(split[1])
+	innerhost = split[0]
+	innerport, innererr = strconv.Atoi(split[1])
 	return
 }
